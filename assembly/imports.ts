@@ -121,6 +121,10 @@ export declare function proxy_get_header_map_size(typ: HeaderMapType, size: ptr<
 // @ts-ignore: decorator
 @external("env", "proxy_get_buffer_bytes")
 export declare function proxy_get_buffer_bytes(typ: BufferType, start: u32, length: u32, ptr: ptr<ptr<char>>, size: ptr<usize>): WasmResult;
+
+@external("env", "proxy_set_buffer_bytes")
+export declare function proxy_set_buffer_bytes(typ: BufferType, start: u32, length: u32, ptr: ptr<ptr<char>>, size: size_t): WasmResult;
+
 // @ts-ignore: decorator
 @external("env", "proxy_get_buffer_status")
 export declare function proxy_get_buffer_status(typ: BufferType, length_ptr: ptr<usize>, flags_ptr: ptr<u32>): WasmResult;

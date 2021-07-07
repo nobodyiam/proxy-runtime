@@ -706,6 +706,20 @@ export function proxy_set_effective_context(_id: u32): WasmResultValues {
   }
   return result;
 }
+
+/**
+ * Set the http response body
+ * @param body the body as string
+ */
+export function set_http_response_body(body: string): WasmResultValues {
+  let body_buffer = String.UTF8.encode(body);
+  const result = imports.proxy_set_buffer_bytes(BufferTypeValues.HttpResponseBody, 0, body.length,
+      changetype<usize>(body_buffer), body_buffer.byteLength);
+  if (result != WasmResultValues.Ok) {
+    log(LogLevelValues.critical, "Unable to set http response body: " + body + " with result: " + result.toString());
+  }
+  return result;
+}
 /////// runtime support
 
 /**
